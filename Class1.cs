@@ -10,7 +10,7 @@ namespace Work10
     {
         private string name;
 
-        public string Name { get => Name; set => Name = value; }
+        public string Name { get => this.name; set => this.name = value; }
 
         public Student(string name)
         {
