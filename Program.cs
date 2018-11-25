@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -78,31 +78,30 @@ namespace Work10
             Console.Write($"\0Ваш элемент:\0{llist.ElementAt(numl)}\0");
             Console.WriteLine();
 
+
             Stack<Student> stud = new Stack<Student>();
-            for (int i=0; i<5; i++)
+            stud.Push(new Student(Convert.ToString(new Random().Next(0, 5))));
+            stud.Push(new Student(Convert.ToString(new Random().Next(5, 10))));
+
+            Console.Write($"\0Объекты класса:\0");
+            foreach (Student studs in stud)
             {
-                stud.Push(new Student(Convert.ToString(new Random().Next(0, 10))));
+                Console.Write($"\0Объекты класса:\0{studs}\0");
             }
-
-            foreach(Student studs in stud)
-            {
-                Console.WriteLine($"{studs}\0");
-            }
+            Console.WriteLine();
 
 
-            ObservableCollection<Student> student = new ObservableCollection<Student>();            
-
+            ObservableCollection<Student> student = new ObservableCollection<Student>(); 
+            
             student.CollectionChanged += Users_CollectionChanged;
 
-            for(int i = 0; i < 4; i++)
-            {
-                student.Add(new Student(Convert.ToString(new Random().Next(0, 255))));
-            }
+            student.Add(new Student(Convert.ToString(new Random().Next(0, 5))));
+            student.Add(new Student(Convert.ToString(new Random().Next(5, 10))));
             student.RemoveAt(0);
 
             foreach(Student students in student)
             {
-                Console.WriteLine(students.Name);
+                Console.WriteLine($"\0{students.Name}");
             }
 
            
@@ -116,12 +115,12 @@ namespace Work10
             {
                 case NotifyCollectionChangedAction.Add: 
                     Student newUser = e.NewItems[0] as Student;
-                    Console.WriteLine("Добавлен новый объект: {0}", newUser.Name);
+                    Console.WriteLine("\0Добавлен новый объект: {0}", newUser.Name);
                     break;
 
                 case NotifyCollectionChangedAction.Remove: 
                     Student oldUser = e.OldItems[0] as Student;
-                    Console.WriteLine("Удален объект: {0}", oldUser.Name);
+                    Console.WriteLine("\0Удален объект: {0}", oldUser.Name);
                     break;
             }
                 
